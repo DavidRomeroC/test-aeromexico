@@ -1,0 +1,22 @@
+@use '../../styles/base/base';
+
+.buttons__filter {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    button {
+        background-color: base.$button-normal-color;
+        border: none;
+        border: 2px solid base.$button-active-color;
+        width: 30%;
+        height: 40px;
+        color: rgba(255, 255, 255, 0.695);
+        cursor: pointer;
+
+        &:hover {
+            background-color: base.$button-hover-color;
+        }
+    }
+}

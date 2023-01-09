@@ -1,0 +1,46 @@
+@use '../../styles/base/base';
+
+.buttons__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0px;
+
+    button {
+        background-color: base.$button-active-color;
+        color: base.$base-color-white;
+        border: none;
+        width: 120px;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: base.$button-hover-color;
+        }
+
+        &:first-of-type {
+            border-radius: 0 0 0 10px;
+            border-right: 1px solid black;
+        }
+        
+        &:last-of-type {
+            margin-right: 30px;
+            border-radius: 0 0 10px 0;
+        }
+    
+        img {
+            margin-left: 5px;
+            width: 18px;
+            height: auto;
+            filter: invert(100%);
+        }
+    }
+    
+    
+}

@@ -1,0 +1,35 @@
+$base-color-white: #ffffff;
+$button-normal-color: #666666;
+$button-hover-color: #A6A1D3;
+$button-active-color: #6B63B5;
+// $slytherin-bg-color: linear-gradient(160deg, rgba(33,127,45,1) 0%, rgba(128,230,93,1) 61%);
+// $ravenclaw-bg-color: linear-gradient(162deg, rgba(10,153,186,1) 0%, rgba(98,207,252,1) 85%);
+// $hufflepuff-bg-color: linear-gradient(162deg, rgba(255,200,4,1) 0%, rgba(255,242,132,1) 85%);
+// $gryffindor-bg-color: linear-gradient(162deg, rgba(255,44,27,1) 0%, rgba(255,137,84,1) 85%);
+@font-face {
+    font-family: harrypotter;
+    src: url('../../fonts/HarryP.ttf')
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Oxygen&display=swap');
+
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    background-color: #24465A;
+    background-image: url('../../assets/img/backgorund.jpg');
+    background-position: top center;
+    background-repeat: repeat-y;
+
+    width: 100vw;
+    height: auto;
+    color: $base-color-white;
+
+    .main-content {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+}
