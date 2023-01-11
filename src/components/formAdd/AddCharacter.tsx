@@ -1,53 +1,93 @@
+//styles
+import './_addCharacter.scss'
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from 'react-router-dom';
 
 export const AddCharacter = () => {
 
+    const navigate = useNavigate()
+
+    const handleReturn = () => {
+        navigate('/')
+    }
+
     return (
         <div className="form__container">
-            <div>
+            <div className='title-esc' >
                 <h3>Agregar un personaje</h3>
-                <button><img src="" alt="" /></button>
+                <button
+                    onClick={handleReturn}
+                >
+                    <img
+                        src={require('../../assets/img/x-mark.png')}
+                        alt="exit form"
+                    />
+                </button>
             </div>
             <Formik
                 initialValues={{
                     name: '',
-                    last_name: '',
-                    birthday: "",
+                    dateOfBirth: "",
+                    eyeColour: "",
+                    hairColour: "",
+                    gender: "",
+                    hogwartsStaff: "",
+                    image: ""
                 }}
                 validate={(values) => {
                     const errors = {
                         name: '',
-                        last_name: '',
-                        birthday: "",
+                        dateOfBirth: "",
+                        eyeColour: "",
+                        hairColour: "",
+                        gender: "",
+                        hogwartsStaff: "",
+                        image: ""
                     };
 
-                    if (!values.name) {
-                        errors.name = "Por favor ingrese un usuario"
-                    } else if (values.name.length < 3) {
-                        errors.name = "Por favor ingrese un usuario de más de 3 caracteres"
-                    } else if (values.name.length > 30) {
-                        errors.name = "A excedido el limite de 30 caracteres"
-                    }
+                    (!values.name) && (errors.name = "Ingrese un nombre");
 
-                    if (!values.last_name) {
-                        errors.last_name = "Por favor ingrese un usuario"
-                    } else if (values.last_name.length < 3) {
-                        errors.last_name = "Por favor ingrese un usuario de más de 3 caracteres"
-                    } else if (values.last_name.length > 30) {
-                        errors.last_name = "A excedido el limite de 30 caracteres"
-                    }
+                    (!values.dateOfBirth) && (errors.dateOfBirth = "Ingrese el dia de nacimiento");
 
-                    if (!values.birthday) {
-                        errors.birthday = "Por favor ingrese una fecha"
-                    }
+                    (!values.eyeColour) && (errors.eyeColour = "Ingrese color de ojos");
 
-                    if (errors.name === "" && errors.last_name === "" && errors.birthday === "") {
+                    (!values.hairColour) && (errors.hairColour = "Ingrese color de cabello");
+
+                    (!values.gender) && (errors.gender = "Seleccione un género");
+
+                    (!values.hogwartsStaff) && (errors.hogwartsStaff = "Seleccione una picisión");
+
+                    (!values.image) && (errors.image = "Agregue una foto");
+
+                    if (errors.name === "" && errors.dateOfBirth === "" && errors.eyeColour === "" && errors.hairColour === "" && errors.gender === "" && errors.hogwartsStaff === "" && errors.image === "") {
                         return {};
                     } else {
                         return errors;
                     }
                 }}
-                onSubmit={({ name, last_name, birthday }, { resetForm }) => {
+                onSubmit={({ name, dateOfBirth, eyeColour, hairColour, gender, hogwartsStaff }, { resetForm }) => {
+
+                    const character = {
+                        id: Date.now().toString(36) + Math.random().toString(36).substr(2),
+                        house: "",
+                        name,
+                        dateOfBirth,
+                        eyeColour,
+                        hairColour,
+                        gender,
+                        hogwartsStaff: (hogwartsStaff === "true" ? true : false),
+                        image: "https://i.pinimg.com/236x/af/de/72/afde727d75f5aa585c407cd89910cb80.jpg",
+                    }
+
+                    console.log(character)
+                    fetch('http://localhost:4000/hpcharacters', {
+                        method: "POST",
+                        body: JSON.stringify(character),
+                        headers: { "Content-type": "application/json; charset=UTF-8" }
+                    })
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err))
 
                     resetForm();
                 }}
@@ -56,7 +96,7 @@ export const AddCharacter = () => {
                     <Form>
                         <div className="form-group">
                             <div className="form__input-container">
-                                <label htmlFor="name">Nombre: </label>
+                                <label htmlFor="name">NOMBRE </label>
                                 <Field
                                     type="text"
                                     id="name"
@@ -65,53 +105,82 @@ export const AddCharacter = () => {
                                 />
                                 <ErrorMessage name="name" component={() => (<div> {errors.name} </div>)} />
                             </div>
+
                             <div className="form__input-container">
-                                <label htmlFor="last_name">Compleaños: </label>
+                                <label htmlFor="dateOfBirth">CUMPLEAÑOS </label>
                                 <Field
-                                    type="text"
-                                    id="birthday"
-                                    name="birthday"
+                                    type="date"
+                                    id="dateOfBirth"
+                                    name="dateOfBirth"
                                     className="form__input"
                                 />
-                                <ErrorMessage name="birthday" component={() => (<div> {errors.last_name} </div>)} />
+                                <ErrorMessage name="dateOfBirth" component={() => (<div> {errors.dateOfBirth} </div>)} />
                             </div>
+
                             <div className="form__input-container">
-                                <label htmlFor="birthday">Color de ojos: </label>
+                                <label htmlFor="eyeColour">COLOR DE OJOS </label>
                                 <Field
                                     type="text"
-                                    id="eyes"
-                                    name="eyes"
+                                    id="eyeColour"
+                                    name="eyeColour"
                                     className="form__input"
                                 />
-                                <ErrorMessage name="eyes" component={() => (<div> {errors.birthday} </div>)} />
+                                <ErrorMessage name="eyeColour" component={() => (<div> {errors.eyeColour} </div>)} />
                             </div>
+
                             <div className="form__input-container">
-                                <label htmlFor="birthday">Color de pelo: </label>
+                                <label htmlFor="hairColour">COLOR DE PELO </label>
                                 <Field
                                     type="text"
-                                    id="hair"
-                                    name="hair"
+                                    id="hairColour"
+                                    name="hairColour"
                                     className="form__input"
                                 />
-                                <ErrorMessage name="hair" component={() => (<div> {errors.birthday} </div>)} />
+                                <ErrorMessage name="hairColour" component={() => (<div> {errors.hairColour} </div>)} />
                             </div>
+
                             <div className="form__input-container">
-                                <label htmlFor="birthday">Género: </label>
+                                <label htmlFor="gender">GÉNERO </label>
                                 <div>
-                                    <Field type="radio" id="genre" name="genre" value="female" className="form__input"/> Mujer
-                                    <Field type="radio" id="genre" name="genre" value="male" className="form__input"/> Hombre
+                                    <div>
+                                        <Field type="radio" id="gender" name="gender" value="female" className="form__input" />
+                                        <span>Mujer</span>
+                                    </div>
+                                    <div>
+                                        <Field type="radio" id="gender" name="gender" value="male" className="form__input" />
+                                        <span>Hombre</span>
+                                    </div>
                                 </div>
-                                <ErrorMessage name="genre" component={() => (<div> {errors.birthday} </div>)} />
+                                <ErrorMessage name="gender" component={() => (<div> {errors.gender} </div>)} />
                             </div>
+
                             <div className="form__input-container">
-                                <label htmlFor="birthday">Posición: </label>
+                                <label htmlFor="hogwartsStaff">POSICIÓN </label>
                                 <div>
-                                    <Field type="radio" id="position" name="position" value="student" className="form__input"/> Estudiante
-                                    <Field type="radio" id="position" name="position" value="staff" className="form__input"/> STAFF
+                                    <div>
+                                        <Field type="radio" id="hogwartsStaff" name="hogwartsStaff" value="false" className="form__input" />
+                                        <span>Estudiante</span>
+                                    </div>
+                                    <div>
+                                        <Field type="radio" id="hogwartsStaff" name="hogwartsStaff" value="true" className="form__input" />
+                                        <span>STAFF</span>
+                                    </div>
                                 </div>
-                                <ErrorMessage name="position" component={() => (<div> {errors.birthday} </div>)} />
+                                <ErrorMessage name="hogwartsStaff" component={() => (<div> {errors.hogwartsStaff} </div>)} />
                             </div>
-                            <button className="btn-login" type="submit">Guardar</button>
+
+                            <div className="form__input-container-file">
+                                <label htmlFor="image">FOTOGRAFIA </label>
+                                <Field
+                                    type="file"
+                                    id="image"
+                                    name="image"
+                                    className="form__input"
+                                />
+                                <ErrorMessage name="image" component={() => (<div> {errors.image} </div>)} />
+                            </div>
+
+                            <button className="btn-login" type="submit">GUARDAR</button>
                         </div>
                     </Form>
                 )}

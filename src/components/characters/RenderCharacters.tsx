@@ -1,10 +1,25 @@
 import { setHouse } from '../../helpers/setHouse'
 import { useFetch } from '../../hooks'
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useEffect } from 'react';
+import { addFav } from '../../features/favourite/favouritesSlice';
 import './_renderCharacters.scss'
 
-export const RenderCharacters = () => {
+export const RenderCharacters = ({setIsActive}: any) => {
 
-    const { data, loading } = useFetch('hpcharacters')
+    const { loading } = useFetch('hpcharacters')
+
+    const characters = useAppSelector((state) => state.characters.data)
+    const favs = useAppSelector((state) => state.favourite.favs)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        characters.length === 0 ? setIsActive(null) : characters.find((ch: any) => ch.hogwartsStaff === true) ? setIsActive(true) : setIsActive(false)
+    }, [characters])
+
+    const handleFavourite = (name: any, image: any) => {
+        dispatch(addFav({name, image}))
+    }
 
     return (
         <div className='characters__main-content' >
@@ -14,7 +29,7 @@ export const RenderCharacters = () => {
                     (<div>Cargado data</div>)
                     :
                     (
-                        data.map(({ house, image, alive, name, hogwartsStaff, dateOfBirth, gender, eyeColour, hairColour }: any, id: any) => (
+                        characters.map(({ house, image, alive, name, hogwartsStaff, dateOfBirth, gender, eyeColour, hairColour }: any, id: any) => (
                             <div key={id} className='card-content' >
                                 <div
                                     className='img-content'
@@ -34,10 +49,14 @@ export const RenderCharacters = () => {
                                     <p>Color de pelo: <span>{hairColour}</span> </p>
                                 </div>
                                 <div className='favourite' >
-                                    <img
-                                        src={require('../../assets/img/bookmark.png')}
-                                        alt="favourite"
-                                    />
+                                    <button
+                                        onClick={() => handleFavourite(name, image)}
+                                    >
+                                        <img
+                                            src={ favs.some((item: any) => item.name === name) ? require('../../assets/img/bookmark.png') : require('../../assets/img/bookmark-uncheck.png')}
+                                            alt="favourite"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                         ))

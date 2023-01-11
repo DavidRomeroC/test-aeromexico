@@ -1,0 +1,111 @@
+@use '../../styles/base/base';
+
+.form__container {
+    width: 60%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 200px;
+    background: white;
+    color: black;
+    border-radius: 15px;
+
+
+    .title-esc {
+        display: flex;
+        flex-direction: row;
+        width: 85%;
+        justify-content: space-between;
+
+        h3 {
+            font-family: sans-serif;
+            font-size: 15px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            img {
+                width: 20px;
+                height: auto;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.113);
+                }
+            }
+        }
+    }
+
+    .form-group {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        margin-left: 50px;
+
+        .form__input-container {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+
+            label {
+                font-size: 10px;
+                font-family: sans-serif;
+            }
+
+            input {
+                height: 40px;
+                background-color: #F2F3F3;
+                border: none;
+                border-bottom: 2px solid #A4AAAC;
+                border-radius: 5px 5px 0 0;
+            }
+
+            div {
+                display: flex;
+                flex-direction: row;
+
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    span {
+                        font-size: 15px;
+                        font-family: sans-serif;
+                    }
+                }
+            }
+        }
+
+        .form__input-container-file {
+            display: flex;
+            flex-direction: row;
+            width: 70%;
+            margin-bottom: 10px;
+        }
+
+        .btn-login {
+            width: 35%;
+            height: 40px;
+            margin-bottom: 10px;
+            margin-left: 130px;
+            background: base.$button-normal-color;
+            border: 4px solid base.$button-active-color;
+            cursor: pointer;
+            color: white;
+
+            &:hover {
+                background: base.$button-hover-color;
+            }
+        }
+    }
+}

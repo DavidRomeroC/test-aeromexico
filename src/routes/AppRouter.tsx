@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AddCharacterPage, HomePage } from "../pages"
 
 export const AppRouter = () => {
@@ -7,6 +7,7 @@ export const AppRouter = () => {
             <Routes>
                 <Route path='/' element={<HomePage/>} />
                 <Route path='/addCharacter' element={<AddCharacterPage/>} />
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </BrowserRouter>
     )

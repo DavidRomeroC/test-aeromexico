@@ -1,46 +1,104 @@
 @use '../../styles/base/base';
 
-.buttons__content {
+.favs-button-content {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
     position: sticky;
     top: 0px;
 
-    button {
-        background-color: base.$button-active-color;
-        color: base.$base-color-white;
-        border: none;
-        width: 120px;
-        height: 30px;
+    .buttons__content {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+        justify-content: flex-end;
 
-        &:hover {
-            background-color: base.$button-hover-color;
+        button {
+            background-color: base.$button-active-color;
+            color: base.$base-color-white;
+            border: none;
+            width: 120px;
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: base.$button-hover-color;
+            }
+
+            &:first-of-type {
+                border-radius: 0 0 0 10px;
+                border-right: 1px solid black;
+            }
+
+            &:last-of-type {
+                margin-right: 30px;
+                border-radius: 0 0 10px 0;
+            }
+
+            img {
+                margin-left: 5px;
+                width: 18px;
+                height: auto;
+                filter: invert(100%);
+            }
         }
 
-        &:first-of-type {
-            border-radius: 0 0 0 10px;
-            border-right: 1px solid black;
+
+    }
+
+    .favs-content {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        border: none;
+        position: sticky;
+
+        div {
+            width: 50px;
+            height: 40px;
+            background: base.$button-active-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            img {
+                height: 30px;
+                width: auto;
+                border-radius: 50%;
+            }
         }
-        
-        &:last-of-type {
-            margin-right: 30px;
-            border-radius: 0 0 10px 0;
+
+        p {
+            background-color: base.$button-active-color;
+            width: 120px;
+            height: 40px;
+            margin: 0px;
+            text-align: center;
+            font-family: sans-serif;
         }
-    
-        img {
-            margin-left: 5px;
-            width: 18px;
-            height: auto;
-            filter: invert(100%);
+
+        button {
+            background-color: base.$button-active-color;
+            border: none;
+            width: 50px;
+            height: 40px;
+            margin-right: 40px;
+            cursor: pointer;
+
+            img {
+                filter: invert(100%);
+                width: 20px;
+                height: auto;
+
+                &:hover {
+                    filter: invert(50%);
+                }
+            }
         }
     }
-    
-    
 }

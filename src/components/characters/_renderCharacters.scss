@@ -40,7 +40,7 @@
                 font-size: 9px;
                 margin-left: 9px;
                 font-weight: bolder;
-                
+
                 span {
                     font-weight: normal;
                 }
@@ -49,7 +49,7 @@
                     color: rgba(0, 0, 0, 0.507);
                 }
             }
-            
+
             h4 {
                 font-family: 'Open Sans', sans-serif;
                 font-size: 15px;
@@ -63,11 +63,18 @@
             border-radius: 0 10px 10px 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
 
-            img {
-                margin-bottom: 180px;
-                width: 30px;
+            button {
+                background: none;
+                border: none;
+                height: 40px;
+
+                img {
+                    margin-bottom: 180px;
+                    width: 30px;
+                    cursor: pointer;
+                }
             }
         }
     }
