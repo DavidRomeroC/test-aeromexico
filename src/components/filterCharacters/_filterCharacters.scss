@@ -3,20 +3,38 @@
 .buttons__filter {
     width: 80%;
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 
     button {
         background-color: base.$button-normal-color;
         border: none;
         border: 2px solid base.$button-active-color;
-        width: 30%;
+        width: 150px;
         height: 40px;
         color: rgba(255, 255, 255, 0.695);
         cursor: pointer;
 
         &:hover {
             background-color: base.$button-hover-color;
+        }
+    }
+
+    div {
+        width: 150px;
+        height: 40px;
+
+        select {
+            width: 150px;
+            height: 40px;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: base.$button-active-color;
+            color: rgba(255, 255, 255, 0.695);
+            border: none;
+            border: 2px solid base.$button-active-color;
         }
     }
 }

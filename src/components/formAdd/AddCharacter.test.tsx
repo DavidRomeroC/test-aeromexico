@@ -1,11 +1,18 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { AddCharacter } from './AddCharacter'
+import { BrowserRouter } from 'react-router-dom';
 
-test('Comprobar si el componente AddCharacter se esta renderizando', () => {
 
-    const component = render(<AddCharacter />)
-    // component.getByText('Agregar un personaje')
-    expect(component.container).toHaveTextContent('Agregar un personaje')
+describe('Pruebas a componente AddCharacter', () => {
+
+    beforeEach(()=>{
+        render(<BrowserRouter><AddCharacter /></BrowserRouter>)
+    })
+
+    test('Comprobar si el componente AddCharacter se esta renderizando', () => {
+        expect(screen.getByText('Agregar un personaje')).toBeInTheDocument()
+    })
+
 })

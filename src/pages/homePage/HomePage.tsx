@@ -15,7 +15,7 @@ export const HomePage = () => {
                 <h3>Harry Potter</h3>
                 <h4>Selecciona tu filtro</h4>
             </div>
-            <FilterCharacters isActive={isActive}/>
+            <FilterCharacters isActive={isActive} />
             <RenderCharacters setIsActive={setIsActive}/>
         </div>
     )

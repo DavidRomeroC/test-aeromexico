@@ -17,6 +17,7 @@ export const AddCharacter = () => {
             <div className='title-esc' >
                 <h3>Agregar un personaje</h3>
                 <button
+                    role='returnButton'
                     onClick={handleReturn}
                 >
                     <img
